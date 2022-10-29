@@ -3,7 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "install:front": "cd frontend && npm install",
+    "install:back": "cd backend && npm install",
+    "install": "concurrently \"npm run install:front\" \"npm run install:back\"",
+    "frontend": "cd frontend && npm start",
+    "backend": "cd backend && npm start",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\""
+  },
   "author": "Bxtard",
   "license": "ISC",
   "dependencies": {
