@@ -15,4 +15,5 @@ model Note {
   title      String
   content    String
   categories String[] @default([])
+  isArchived Boolean  @default(false)
 }

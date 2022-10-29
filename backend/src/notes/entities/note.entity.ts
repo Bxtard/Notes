@@ -14,4 +14,6 @@ export class NoteEntity implements Note{
   content: string;
   @ApiProperty({required: false, nullable: true})
   categories: string[] | null;
+  @ApiProperty()
+  isArchived: boolean
 }
