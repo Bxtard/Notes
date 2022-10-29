@@ -7,8 +7,8 @@
     "install:front": "cd frontend && npm install",
     "install:back": "cd backend && npm install",
     "install": "concurrently \"npm run install:front\" \"npm run install:back\"",
-    "frontend": "cd frontend && npm start",
-    "backend": "cd backend && npm start",
+    "frontend": "cd frontend && npm run dev",
+    "backend": "cd backend && npm run start:dev",
     "dev": "concurrently \"npm run backend\" \"npm run frontend\""
   },
   "author": "Bxtard",
