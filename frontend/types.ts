@@ -4,5 +4,5 @@ export type noteType = {
   updatedAt: Date,
   title: string,
   content: string,
-  isArchived: false,
+  isArchived: boolean,
 }

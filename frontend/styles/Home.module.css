@@ -108,6 +108,25 @@
   margin-left: 0.5rem;
 }
 
+.buttonsContainer {
+  margin-left: 40px;
+  max-width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.notesContainer{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.icons {
+  margin-top: 15px;
+  display: flex;
+  justify-content:space-around ;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
