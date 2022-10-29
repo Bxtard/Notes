@@ -21,6 +21,12 @@ export class NotesController {
   findAll() {
     return this.notesService.findAll();
   }
+  
+  @Get('archived')
+  @ApiCreatedResponse({ type: NoteEntity, isArray: true })
+  findAllArchived() {
+    return this.notesService.findAllArchived();
+  }
 
   @Get(':id')
   @ApiCreatedResponse({ type: NoteEntity })

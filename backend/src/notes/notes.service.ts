@@ -15,7 +15,15 @@ export class NotesService {
   }
 
   findAll() {
-    return this.prisma.note.findMany();
+    return this.prisma.note.findMany({
+      where: {isArchived: false},
+    });
+  }
+  
+  findAllArchived() {
+    return this.prisma.note.findMany({
+      where: {isArchived: true},
+    });
   }
 
   async findOne(id: string) {
