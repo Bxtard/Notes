@@ -14,6 +14,11 @@ model Note {
 
   title      String
   content    String
-  categories String[] @default([])
-  isArchived Boolean  @default(false)
+  isArchived Boolean    @default(false)
+  categories Category[]
+}
+
+model Category {
+  title String @id
+  notes Note[]
 }
