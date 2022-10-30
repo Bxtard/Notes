@@ -1,16 +1,18 @@
 import { Dispatch, SetStateAction, useState } from 'react'
 import styles from '../styles/Home.module.css'
-import { createNote } from '../services/notes';
+import { updateNote } from '../services/notes';
+import { noteType } from '../types';
 
 interface Props{
- setShowModal: Dispatch<SetStateAction<boolean>>,
- showModal: boolean,
+ setShowUpdateModal: Dispatch<SetStateAction<boolean>>,
+ showUpdateModal: boolean,
  setCount: Dispatch<SetStateAction<number>>,
  count: number,
+ note: noteType,
 }
 
-const Modal = (props:Props) => {
-  const {showModal, setShowModal, setCount, count} = props;
+const ModalUpdate = (props:Props) => {
+  const {showUpdateModal, setShowUpdateModal, setCount, count, note} = props;
   const [form, setForm] = useState({title:'', content:''});
 
   const handleChange = (e: { target: { name: string; value: string; }; }) => {
@@ -21,30 +23,30 @@ const Modal = (props:Props) => {
 
   const handleSubmit = async() => {
     console.log(form);
-    const response = await createNote(form);
+    const response = await updateNote(note.id, form);
     setCount(count+1);
-    setShowModal(false);
+    setShowUpdateModal(false);
   }
 
   return (
     <>
-      {showModal?<div className={styles.background}>
+      {showUpdateModal?<div className={styles.background}>
         <div className={styles.popup}>
           <h2>
-            Create note
+            Update note
           </h2>
           <form className={styles.form}>
             <label>
               Title
             </label>
-            <input type="text" name='title' onChange={handleChange}/>
+            <input type="text" name='title' defaultValue={note.title} onChange={handleChange}/>
             <label>
               Content
             </label>
-            <textarea  name="content" rows={4} cols={50} onChange={handleChange}/>
+              <textarea  name="content" rows={4} cols={50} defaultValue={note.content} onChange={handleChange}/>
           </form>
           <div className={styles.popupButtons}>
-            <button className={styles.button} onClick={() => setShowModal(false)}>cancel</button>
+            <button className={styles.button} onClick={() => setShowUpdateModal(false)}>cancel</button>
             <button className={styles.button} onClick={handleSubmit}>save</button>
           </div>
         </div>
@@ -54,4 +56,4 @@ const Modal = (props:Props) => {
   )
 }
 
-export default Modal
+export default ModalUpdate

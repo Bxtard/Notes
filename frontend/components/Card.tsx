@@ -4,6 +4,7 @@ import styles from '../styles/Home.module.css'
 import {noteType} from '../types';
 import {updateNote} from '../services/notes';
 import ModalDelete from "./ModalDelete";
+import ModalUpdate from "./ModalUpdate";
 
 interface Props{
   note: noteType
@@ -20,6 +21,7 @@ const Card = (props: Props) => {
     setCount(count+1);
   }
   
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [showDelModal, setShowDelModal] = useState(false);
   const {note, setCount, count} = props;
   return (
@@ -28,7 +30,7 @@ const Card = (props: Props) => {
       <label>{`last updated:`}</label>
       <label>{`${note.updatedAt}`}</label>
       <div className={styles.icons}>
-        <button>
+        <button onClick={()=> setShowUpdateModal(true)}>
           <i><FaPen/></i>
         </button>
         {
@@ -43,7 +45,7 @@ const Card = (props: Props) => {
         <button onClick={()=> setShowDelModal(true)}>
           <i><FaTrash/></i>
         </button>
-
+        <ModalUpdate note={note} setShowUpdateModal={setShowUpdateModal} showUpdateModal={showUpdateModal} setCount={setCount} count={count}/>
         <ModalDelete id={note.id} setShowDelModal={setShowDelModal} showDelModal={showDelModal} setCount={setCount} count={count}/>
       </div>
     </div>
