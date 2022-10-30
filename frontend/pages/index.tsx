@@ -51,7 +51,7 @@ const Home: NextPage = () => {
               </div>
               {archivedList?null
               :<div className={styles.card}>
-                <button><FaPlus/></button>
+                <button onClick={() => setShowModal(true)}><FaPlus/></button>
               </div>}
             </div>
           </li>
@@ -65,7 +65,7 @@ const Home: NextPage = () => {
           }): "a")
         }
         </ul>
-        <Modal showModal={showModal} setShowModal={setShowModal}/>
+        <Modal showModal={showModal} setShowModal={setShowModal} setCount={setCount} count={count}/>
       </main>
     </>
   );

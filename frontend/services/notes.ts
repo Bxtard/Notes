@@ -12,7 +12,7 @@ const response =  await fetch(`${BASE_URL}/notes/archived`);
 return await response.json();
 }
 
-export const createNote = async (note: noteType) => {
+export const createNote = async (note: {title: string, content: string}) => {
   const response = await fetch(`${BASE_URL}/notes`,{
     method: 'POST',
     body: JSON.stringify(note),
