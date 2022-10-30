@@ -13,6 +13,7 @@ const Home: NextPage = () => {
   const [archivedNotes, setArchivedNotes] = useState<noteType[]>([]);
   const [notes, setNotes] = useState<noteType[]>([]);
   const [showModal, setShowModal] = useState(false);
+  const [count, setCount] = useState(0);
 
   
   const fetchData = async () => {
@@ -24,7 +25,7 @@ const Home: NextPage = () => {
  
   useEffect(() => {
     fetchData();
-  }, [])
+  }, [count])
 
   return (
     <>
@@ -56,11 +57,11 @@ const Home: NextPage = () => {
           </li>
         {archivedList?
           (archivedNotes? archivedNotes.map((note)=>{
-            return <li key={note.id}><Card note={note}/></li>
+            return <li key={note.id}><Card note={note} setCount={setCount} count={count}/></li>
           }): "a")
          :
           (notes? notes.map((note)=>{
-            return <li key={note.id}><Card note={note}/></li>
+            return <li key={note.id}><Card note={note} setCount={setCount} count={count}/></li>
           }): "a")
         }
         </ul>

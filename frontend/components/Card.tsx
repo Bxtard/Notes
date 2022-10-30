@@ -1,23 +1,26 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { FaPen, FaTrash, FaArchive, FaUpload } from "react-icons/fa";
 import styles from '../styles/Home.module.css'
 import {noteType} from '../types';
 import {updateNote} from '../services/notes';
 
 interface Props{
-  note: noteType;
-}
-
-const handleClick = async (note: noteType) => {
-  const newNote: noteType = {...note }
-  newNote.isArchived = !newNote.isArchived;
-  const response = await updateNote(note.id, newNote);
+  note: noteType
+  count: number
+  setCount: Dispatch<SetStateAction<number>>
 }
 
 const Card = (props: Props) => {
-
+  
+  const handleClick = async (note: noteType) => {
+    const newNote: noteType = {...note }
+    newNote.isArchived = !newNote.isArchived;
+    const response = await updateNote(note.id, newNote);
+    setCount(count+1);
+  }
+  
   const [showModal, setShowModal] = useState(false);
-  const {note} = props;
+  const {note, setCount, count} = props;
   return (
     <div className={styles.card}>
       <h2>{note.title}</h2>
