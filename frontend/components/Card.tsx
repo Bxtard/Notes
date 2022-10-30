@@ -51,5 +51,5 @@ const Card = (props: Props) => {
     </div>
   )
 }
-3
+
 export default Card
