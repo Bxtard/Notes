@@ -3,7 +3,7 @@ import styles from '../styles/Home.module.css'
 import { useState, useEffect } from 'react'
 import { NextPage } from 'next';
 import Card from '../components/Card';
-import {noteType} from '../types';
+import { noteType } from '../types';
 import Modal from '../components/Modal';
 import { getAllNotes, getArchivedNotes } from '../services/notes';
 import { FaArchive, FaPlus } from 'react-icons/fa';
@@ -47,25 +47,38 @@ const Home: NextPage = () => {
           <li>
             <div>
               <div className={styles.card}>
-                <button onClick={() => setArchivedList(!archivedList)}><i><FaArchive/></i></button>
+                <button onClick={() => setArchivedList(!archivedList)}>
+                  <FaArchive/>
+                </button>
               </div>
+              {/* Button add */}
               {archivedList?null
               :<div className={styles.card}>
-                <button onClick={() => setShowModal(true)}><FaPlus/></button>
+                <button onClick={() => setShowModal(true)}>
+                  <FaPlus/>
+                </button>
               </div>}
             </div>
           </li>
-        {archivedList?
-          (archivedNotes? archivedNotes.map((note)=>{
-            return <li key={note.id}><Card note={note} setCount={setCount} count={count}/></li>
-          }): "a")
-         :
-          (notes? notes.map((note)=>{
-            return <li key={note.id}><Card note={note} setCount={setCount} count={count}/></li>
-          }): "a")
-        }
+          {archivedList?
+            (archivedNotes? archivedNotes.map((note)=>{
+              return <li key={note.id}><Card note={note}
+                setCount={setCount} 
+                count={count}/></li>
+            }): null)
+          :
+            (notes? notes.map((note)=>{
+              return <li key={note.id}><Card note={note}
+                setCount={setCount}
+                count={count}/></li>
+            }): null)
+          }
         </ul>
-        <Modal showModal={showModal} setShowModal={setShowModal} setCount={setCount} count={count}/>
+        <Modal 
+          showModal={showModal} 
+          setShowModal={setShowModal} 
+          setCount={setCount} 
+          count={count}/>
       </main>
     </>
   );

@@ -27,6 +27,12 @@ export class NotesController {
   findAllArchived() {
     return this.notesService.findAllArchived();
   }
+  
+  @Get('category')
+  @ApiCreatedResponse({ type: NoteEntity, isArray: true })
+  findCategory(@Body() category: string) {
+    return this.notesService.findCategory(category);
+  }
 
   @Get(':id')
   @ApiCreatedResponse({ type: NoteEntity })

@@ -19,6 +19,6 @@ model Note {
 }
 
 model Category {
-  title String @id
+  title String @id @unique
   notes Note[]
 }

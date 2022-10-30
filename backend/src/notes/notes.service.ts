@@ -19,6 +19,18 @@ export class NotesService {
       where: {isArchived: false},
     });
   }
+
+  findCategory(category: string) {
+    return this.prisma.note.findMany({
+      where: {
+        categories: {
+          some: {
+            title: category,
+          },
+        },
+      },
+    });
+  }
   
   findAllArchived() {
     return this.prisma.note.findMany({
