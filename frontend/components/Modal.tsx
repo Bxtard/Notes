@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction, useState } from 'react'
+import styles from '../styles/Home.module.css'
 import { createNote } from '../services/notes';
 
 interface Props{
@@ -22,16 +23,17 @@ const Modal = (props:Props) => {
     console.log(form);
     const response = await createNote(form);
     setCount(count+1);
+    setShowModal(false);
   }
 
   return (
     <>
-      {showModal?<div className='background'>
-        <div className='popup'>
+      {showModal?<div className={styles.background}>
+        <div className={styles.popup}>
           <h2>
             Create note
           </h2>
-          <form action="">
+          <form className={styles.form}>
             <label>
               Title
             </label>
@@ -39,11 +41,11 @@ const Modal = (props:Props) => {
             <label>
               Content
             </label>
-            <input type={'text'} name='content' onChange={handleChange}/>
+              <input type={'text'} name='content' onChange={handleChange}/>
           </form>
-          <div>
-            <button onClick={() => setShowModal(false)}>cancel</button>
-            <button onClick={handleSubmit}>save</button>
+          <div className={styles.popupButtons}>
+            <button className={styles.button} onClick={() => setShowModal(false)}>cancel</button>
+            <button className={styles.button} onClick={handleSubmit}>save</button>
           </div>
         </div>
       </div>:null

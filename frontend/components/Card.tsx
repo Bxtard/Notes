@@ -3,6 +3,7 @@ import { FaPen, FaTrash, FaArchive, FaUpload } from "react-icons/fa";
 import styles from '../styles/Home.module.css'
 import {noteType} from '../types';
 import {updateNote} from '../services/notes';
+import ModalDelete from "./ModalDelete";
 
 interface Props{
   note: noteType
@@ -19,7 +20,7 @@ const Card = (props: Props) => {
     setCount(count+1);
   }
   
-  const [showModal, setShowModal] = useState(false);
+  const [showDelModal, setShowDelModal] = useState(false);
   const {note, setCount, count} = props;
   return (
     <div className={styles.card}>
@@ -39,9 +40,11 @@ const Card = (props: Props) => {
             <i><FaArchive/></i>
           </button>
         }
-        <button >
+        <button onClick={()=> setShowDelModal(true)}>
           <i><FaTrash/></i>
         </button>
+
+        <ModalDelete id={note.id} setShowDelModal={setShowDelModal} showDelModal={showDelModal} setCount={setCount} count={count}/>
       </div>
     </div>
   )
